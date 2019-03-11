@@ -1,9 +1,12 @@
 import csv
 import json
+from collections import OrderedDict
 
 
 '''Reads in the entire DOWNLOADED Unconference CSV file, converts it to a usable JSON array and returns it'''
 '''The converted JSON is also written to a json file for immidiete reference'''
+
+
 
 #TODO: If I can remap the headers of the json objects then I can
 
@@ -15,7 +18,9 @@ import json
     # NOTE: The result from this remapping will be that we can look up who is
 
 
-#NOTE: If I remap the headers then I shouldn't store the json objects into an array
+#NOTE: If I remap the headers then I shouldn't store the json objects into an array (maybe pass in a json array into a function)
+
+def remap(json_arry):
 
 
 
@@ -27,18 +32,25 @@ import json
 
 # TODO: Need to wrap some blocks in try if json_file doesnt exist or if blocks
 def convert_to_json(csv_file, fieldnames, json_file = None):
+    '''Takes in csv file name, fieldnames headers, and optional jsonfile name to write the results to'''
+    '''Will read csv file, convert it to an array of json objects, and return it'''
     csvfile = open(csv_file, 'r')
-    jsonfile = open('file.json', 'w')
+
+    if json_file != None:
+        jsonfile = open('file.json', 'w')
 
     reader = csv.DictReader(csvfile, fieldnames)
 
     json_array = list()
 
     for row in reader:
-        json.dump(row, json_array) #NOTE: Idk if this will work: I'm trying to get a json array
-        json.dump(row, jsonfile)
-        jsonfile.write('\n')
+        json_array.append(dict(row))
+        if json_file != None:
+            json.dump(row, jsonfile)
+            jsonfile.write('\n')
 
+    print(json_array[0])
+    return json_array
 
 def main():
     csv_file = 'test-data.csv'
@@ -47,9 +59,9 @@ def main():
 
     schedule_json = convert_to_json(csv_file, fieldnames, json_file = 'file.json')
 
-
+    # print(schedule_json)
 
 
 
 if __name__ == "__main__":
-    def main():
+    main()
