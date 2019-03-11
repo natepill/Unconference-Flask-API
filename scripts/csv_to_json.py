@@ -44,19 +44,19 @@ def convert_to_json(csv_file, fieldnames, json_file = None):
 
     return json_array
 
-def main():
-    csv_file = 'test-data.csv'
-    fieldnames = ("Date","Speaker 1","Topic 1","Speaker 2","Topic 2","Speaker 3","Topic 3","Speaker 4","Topic 4")
-    jsonfile = 'file.json'
-
-
-    schedule_json_array = convert_to_json(csv_file, fieldnames, json_file = 'file.json')
-
-    final_object = map_date_keys(schedule_json_array)
-
-    print(final_object)
-
-
-
-if __name__ == "__main__":
-    main()
+# def main():
+#     csv_file = 'test-data.csv'
+#     fieldnames = ("Date","Speaker 1","Topic 1","Speaker 2","Topic 2","Speaker 3","Topic 3","Speaker 4","Topic 4")
+#     jsonfile = 'file.json'
+#
+#
+#     schedule_json_array = convert_to_json(csv_file, fieldnames, json_file = 'file.json')
+#
+#     final_object = map_date_keys(schedule_json_array)
+#
+#     print(final_object)
+#
+#
+#
+# if __name__ == "__main__":
+#     main()
